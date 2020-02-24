@@ -15,6 +15,7 @@
         <module>data-loader</module>
         <module>statistics-recommender</module>
         <module>offline-recommender</module>
+        <module>online-recommender</module>
     </modules>
 
     <!--dependencyManagement 声明但不引用,子模块如需依赖自行引入,这里只是做版本控制.-->

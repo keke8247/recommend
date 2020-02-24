@@ -58,7 +58,7 @@ object OfflineRecommender {
         // 1. 训练隐语义模型
         val trainData = ratingRDD.map(item => Rating(item._1,item._2,item._3)) //把RDD转换为训练模型需要的数据集
         // 定义模型训练的参数，rank隐特征个数，iterations迭代词数，lambda正则化系数
-        val (rank,iterations,lambda) = (5,10,0.01)
+        val (rank,iterations,lambda) = (5,10,0.1)
         val model = ALS.train(trainData,rank,iterations,lambda); //得到模型
 
         // 2. 获得预测评分矩阵，得到用户的推荐列表
