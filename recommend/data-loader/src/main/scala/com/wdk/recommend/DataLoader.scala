@@ -44,8 +44,8 @@ case class MongoConfig( uri: String, db: String )
 object DataLoader {
 
     //数据文件路径
-    val PRODUCT_DATA_PATH = "F:\\myGitHub\\recommend\\recommend\\data-loader\\src\\main\\resources\\products.csv";
-    val RATING_DATA_PATH = "F:\\myGitHub\\recommend\\recommend\\data-loader\\src\\main\\resources\\ratings.csv";
+    val PRODUCT_DATA_PATH = "D:\\files\\program\\idea\\recommend-system\\recommend\\data-loader\\src\\main\\resources\\products.csv";
+    val RATING_DATA_PATH = "D:\\files\\program\\idea\\recommend-system\\recommend\\data-loader\\src\\main\\resources\\ratings.csv";
 
     //定义mongo中的collection名称
     val MONGO_PRODUCT_COLLECTION = "Product"

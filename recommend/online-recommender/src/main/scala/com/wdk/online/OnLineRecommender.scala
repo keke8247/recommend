@@ -45,6 +45,8 @@ object OnLineRecommender {
         //定义StreamingContext
         val ssc = new StreamingContext(spark.sparkContext,Seconds(2))
 
+        import spark.implicits._
+
         //step1 加载 商品相似度矩阵 ProductRecs数据
         val simProductsMatrix = spark.read
             .option("uri",config("mongo.uri"))
@@ -65,7 +67,7 @@ object OnLineRecommender {
         //step 2接收从kafka推送过来的 用户实时评分数据 数据格式定义为 userId|productId|score|timestamp
         // 2.1 定义kafka配置
         val kafkaConfig = Map(
-            "bootstrap.servers" -> "master:9092",
+            "bootstrap.servers" -> "master:9092,slave1:9092,slave2:9092",
             "key.deserializer" -> classOf[StringDeserializer],
             "value.deserializer" -> classOf[StringDeserializer],
             "group.id" -> "recommender",
@@ -103,6 +105,11 @@ object OnLineRecommender {
                 }
             }
         )
+
+        //启动Streaming
+        ssc.start()
+        println("Streaming started......")
+        ssc.awaitTermination()
     }
     import scala.collection.JavaConversions._ //把java中集合类转成scala的 就可以使用一些 map filter函数了
     //从Redis中获取数据
@@ -217,7 +224,7 @@ object ConnectionHelper extends Serializable {
   */
 case class Recommendation(productId:Int, score:Double)
 
-//商品相似度列表
+//商品相似度列表  这里的属性 productId, recommendations 必须和DataSet里面的名称一致.
 case class ProductRecs(productId:Int,recommendations: Seq[Recommendation])
 
 /**
