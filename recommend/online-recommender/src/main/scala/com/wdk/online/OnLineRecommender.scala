@@ -187,7 +187,7 @@ object OnLineRecommender {
     // 自定义log函数，以N为底
     def log(m: Int):Double={
         val N = 10;
-        math.log(m)/math.log(N) //
+        math.log(m)/math.log(N) // = N为底 m的对数
     }
 
     // 写入mongodb
