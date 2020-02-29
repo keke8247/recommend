@@ -24,7 +24,7 @@ public class Rating {
         this.userId = userId;
         this.productId = productId;
         this.score = score;
-        this.timestamp = new Date().getTime();
+        this.timestamp = new Date().getTime()/1000;
     }
 
     public int getUserId() {

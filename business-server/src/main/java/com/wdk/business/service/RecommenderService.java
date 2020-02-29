@@ -50,9 +50,13 @@ public class RecommenderService {
         MongoCollection<Document> itemCFProductsCollection = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_ITEMCF_COLLECTION);
         Document document = itemCFProductsCollection.find(new Document("productId", request.getId())).first();
 
-        System.out.println(document.get("recs"));
+        if(null == document){
+            return null;
+        }
+
+        System.out.println(document.get("recommendations"));
         List<Recommendation> recommendations = new ArrayList<>();
-        ArrayList<Document> recs = document.get("recs", ArrayList.class);
+        ArrayList<Document> recs = document.get("recommendations", ArrayList.class);
 
         for (Document recDoc : recs) {
             recommendations.add(new Recommendation(recDoc.getInteger("productId"), recDoc.getDouble("score")));
@@ -65,9 +69,13 @@ public class RecommenderService {
         MongoCollection<Document> contentBasedProductsCollection = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_CONTENTBASED_COLLECTION);
         Document document = contentBasedProductsCollection.find(new Document("productId", request.getId())).first();
 
-        System.out.println(document.get("recs"));
+        if(null == document){
+            return null;
+        }
+
+        System.out.println(document.get("recommendations"));
         List<Recommendation> recommendations = new ArrayList<>();
-        ArrayList<Document> recs = document.get("recs", ArrayList.class);
+        ArrayList<Document> recs = document.get("recommendations", ArrayList.class);
 
         for (Document recDoc : recs) {
             recommendations.add(new Recommendation(recDoc.getInteger("productId"), recDoc.getDouble("score")));
@@ -81,8 +89,12 @@ public class RecommenderService {
         MongoCollection<Document> userRecsCollection = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_USER_RECS_COLLECTION);
         Document document = userRecsCollection.find(new Document("userId", request.getUserId())).first();
 
+
+        if(null == document){
+            return null;
+        }
         List<Recommendation> recommendations = new ArrayList<>();
-        ArrayList<Document> recs = document.get("recs", ArrayList.class);
+        ArrayList<Document> recs = document.get("recommendations", ArrayList.class);
 
         for (Document recDoc : recs) {
             recommendations.add(new Recommendation(recDoc.getInteger("productId"), recDoc.getDouble("score")));

@@ -24,9 +24,9 @@ public class Constant {
 
     public static String MONGODB_USER_RECS_COLLECTION = "UserRecs";
 
-    public static String MONGODB_ITEMCF_COLLECTION = "ItemCFProductRecs";
+    public static String MONGODB_ITEMCF_COLLECTION = "ItemCfProductRecs";
 
-    public static String MONGODB_CONTENTBASED_COLLECTION = "ContentBasedProductRecs";
+    public static String MONGODB_CONTENTBASED_COLLECTION = "ContentProductRecs";
 
     //************** FOR PRODUCT RATING ******************
 
