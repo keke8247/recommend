@@ -14,7 +14,7 @@
         select productId,count(1) as count,yearmonth from ratingOfMonth group by yearmonth,productId order by yearmonth desc,count desc
     
     商品的平均评分
-    
+     
         select productId,avg(score) as avg from ratings group by productId order by avg desc
     将统计出的数据写入到MongoDB.
 
