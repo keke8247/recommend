@@ -86,6 +86,9 @@ public class ProductRestApi {
     @RequestMapping(value = "/info/{id}", produces = "application/json", method = RequestMethod.GET )
     @ResponseBody
     public Model getProductInfo(@PathVariable("id")int id, Model model) {
+        System.out.print("=========埋点=========格式 123|pv|1539238422");
+        logger.info(Constant.PRODUCT_PV_PREFIX + ":" + id +"|"+"pv" +"|"+ System.currentTimeMillis()/1000);
+
         model.addAttribute("success",true);
         model.addAttribute("product", productService.findByProductId(id));
         return model;

@@ -32,5 +32,8 @@ public class Constant {
 
     public static String PRODUCT_RATING_PREFIX = "PRODUCT_RATING_PREFIX";
 
+    //商品浏览日志埋点
+    public static String PRODUCT_PV_PREFIX = "PRODUCT_PV_PREFIX";
+
     public static int REDIS_PRODUCT_RATING_QUEUE_SIZE = 40;
 }
