@@ -1,5 +1,14 @@
 ## 电商推荐系统
-  本项目参考 尚硅谷大数据电商推荐系统.
+  项目启动组件:
+  
+  1. Redis
+  2. kafka
+  3. flume ./bin/flume-ng agent --conf conf --conf-file ./conf/kafka-flume.conf --name a1 -Dflume.root.logger=info,console
+  4. MongoDB
+  5. KafkaStreamApplication
+  6. OnLineRecommender
+  7. business-server
+        
 * #### 数据加载模块 data-loader
     读取 商品数据文件和用户评分数据文件 解析后初始化到MongoDB.直接用spark DataFrame的write方法写入到MongoDB
 
