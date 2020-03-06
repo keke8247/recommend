@@ -109,17 +109,17 @@ object DataLoader {
 
         //写入数据  用这种写入方式 其实不需要构建 productCollection
         productDF.write
+                .format("com.mongodb.spark.sql")
                 .option("uri",mongoConfig.uri)
                 .option("collection",MONGO_PRODUCT_COLLECTION)
                 .mode("overwrite")
-                .format("com.mongodb.spark.sql")
                 .save()
 
         ratingDF.write
+                .format("com.mongodb.spark.sql")
                 .option("uri",mongoConfig.uri)
                 .option("collection",MONGO_RATING_COLLECTION)
                 .mode("overwrite")
-                .format("com.mongodb.spark.sql")
                 .save()
 
 

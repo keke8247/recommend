@@ -36,9 +36,9 @@ object ContentRecommender {
 
         //加载数据
         val productDF = spark.read
+                .format("com.mongodb.spark.sql")
                 .option("uri",mongoConfig.uri)
                 .option("collection",MONGO_PRODUCT_COLLECTION)
-                .format("com.mongodb.spark.sql")
                 .load()
                 .as[Product]
                 .map(item=>
@@ -107,10 +107,10 @@ object ContentRecommender {
 
     def storeDataInMongoDB(data: DataFrame, collection_name: String)(implicit mongoConf:MongoConfig): Unit ={
         data.write
+                .format("com.mongodb.spark.sql")
                 .option("uri",mongoConf.uri)
                 .option("collection",collection_name)
                 .mode(SaveMode.Overwrite)
-                .format("com.mongodb.spark.sql")
                 .save()
     }
 

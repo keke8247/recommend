@@ -45,9 +45,9 @@ object StatisticsRecommender {
         import spark.implicits._
         //读取数据
         val ratingDF = spark.read
+            .format("com.mongodb.spark.sql")
             .option("uri",config("mongo.uri"))
             .option("collection",MONGO_RATING_COLLECTION)
-            .format("com.mongodb.spark.sql")
             .load()
             .as[Rating]
             .toDF()
@@ -88,10 +88,10 @@ object StatisticsRecommender {
 
     def storeDataInMongoDB(data: DataFrame, collection_name: String)(implicit mongoConf:MongoConfig): Unit ={
         data.write
+            .format("com.mongodb.spark.sql")
             .option("uri",mongoConf.uri)
             .option("collection",collection_name)
             .mode(SaveMode.Overwrite)
-            .format("com.mongodb.spark.sql")
             .save()
     }
 }

@@ -39,9 +39,9 @@ object ItemCfRecommender {
 
         //加载数据
         val ratingDF = spark.read
+                .format("com.mongodb.spark.sql")
                 .option("uri",mongoConfig.uri)
                 .option("collection",MONGO_COLLECTION_RATING)
-                .format("com.mongodb.spark.sql")
                 .load()
                 .as[ProductRating]
                 .map(rating => (rating.userId,rating.productId))   //时间戳并不需要
@@ -88,10 +88,10 @@ object ItemCfRecommender {
 
         //写入MongoDB
         simDF.write
+                .format("com.mongodb.spark.sql")
                 .option("uri",mongoConfig.uri)
                 .option("collection",ITEM_CF_PRODUCT_RECS)
                 .mode(SaveMode.Overwrite)
-                .format("com.mongodb.spark.sql")
                 .save()
 
         spark.stop()

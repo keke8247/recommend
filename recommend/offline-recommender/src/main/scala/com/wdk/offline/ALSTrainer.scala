@@ -34,9 +34,9 @@ object ALSTrainer {
         import spark.implicits._
         //读取数据
         val ratingRDD = spark.read
+            .format("com.mongodb.spark.sql")
             .option("uri",config("mongo.uri"))
             .option("collection",MONGO_RATING_COLLECTION)
-            .format("com.mongodb.spark.sql")
             .load()
             .as[ProductRating]
             .rdd

@@ -49,9 +49,9 @@ object OnLineRecommender {
 
         //step1 加载 商品相似度矩阵 ProductRecs数据
         val simProductsMatrix = spark.read
+            .format("com.mongodb.spark.sql")
             .option("uri",config("mongo.uri"))
             .option("collection",PRODUCT_RECS)
-            .format("com.mongodb.spark.sql")
             .load()
             .as[ProductRecs]  //DataFrame 转成 DataSet 为DataFrame 加上类型ProductRecs
             .rdd
