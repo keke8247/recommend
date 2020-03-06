@@ -53,7 +53,7 @@ object OnLineRecommender {
             .option("collection",PRODUCT_RECS)
             .format("com.mongodb.spark.sql")
             .load()
-            .as[ProductRecs]
+            .as[ProductRecs]  //DataFrame 转成 DataSet 为DataFrame 加上类型ProductRecs
             .rdd
             //为了后续查询方便,转换成map格式Map<productId:Map<productId:score>>. 二元组可以直接转map
             .map(item=>{
