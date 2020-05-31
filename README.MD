@@ -3,9 +3,9 @@
   
   1. Redis
   2. kafka
-  3. flume ./bin/flume-ng agent --conf conf --conf-file ./conf/kafka-flume.conf --name a1 -Dflume.root.logger=info,console
+  3. flume ./bin/flume-ng agent --conf conf --conf-file ./conf/recommend-kafka-flume.conf --name a1 -Dflume.root.logger=info,console
   4. MongoDB
-  5. KafkaStreamApplication
+  5. KafkaStreamApplication //不需要启用该组件了. 定义了Flume Interceptor拦截器来清洗日志.把不同的日志分到不同的kafka topic里面.
   6. OnLineRecommender
   7. business-server
         

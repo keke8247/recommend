@@ -35,7 +35,7 @@ object OnLineRecommender {
             "spark.cores"->"local[*]",
             "mongo.uri" -> "mongodb://localhost:27017/recommend",
             "mongo.db" -> "recommend",
-            "kafka.topic" -> "recommender"
+            "kafka.topic" -> "recommender_rating"
         )
 
         //定义sparkConf

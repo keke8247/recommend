@@ -26,7 +26,7 @@ public class UserRestApi {
     public Model login(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
         User user  =userService.loginUser(new LoginUserRequest(username,password));
 
-        logger.info(Constant.USER_LOGIN_PREFIX + ":" + user.getUserId() +"|"+ System.currentTimeMillis()/1000);
+        logger.info(Constant.USER_LOGIN_PREFIX + ":" + user.getUserId() +"|"+ "login" +"|"+ System.currentTimeMillis());
 
         model.addAttribute("success",user != null);
         model.addAttribute("user",user);
