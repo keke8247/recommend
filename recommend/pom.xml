@@ -20,6 +20,7 @@
         <module>content-recommender</module>
         <module>itemCF-recommender</module>
         <module>flume-etl-recommender</module>
+        <module>flink-recommender</module>
     </modules>
 
     <!--dependencyManagement 声明但不引用,子模块如需依赖自行引入,这里只是做版本控制.-->
