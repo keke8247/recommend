@@ -35,5 +35,8 @@ public class Constant {
     //商品浏览日志埋点
     public static String PRODUCT_PV_PREFIX = "PRODUCT_PV_PREFIX";
 
+    //用户登录日志埋点
+    public static final String USER_LOGIN_PREFIX = "LOGIN_PREFIX";
+
     public static int REDIS_PRODUCT_RATING_QUEUE_SIZE = 40;
 }
