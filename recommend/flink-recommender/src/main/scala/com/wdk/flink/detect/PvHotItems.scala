@@ -27,7 +27,7 @@ object PvHotItems {
         //定义Flink执行环境
         val env = StreamExecutionEnvironment.getExecutionEnvironment
 
-        env.setParallelism(4)
+        env.setParallelism(1)
 
         env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime)
 
@@ -43,7 +43,7 @@ object PvHotItems {
             override def extractTimestamp(element: PvItem): Long = element.timeStamp * 1000
         })
                 .keyBy(_.itemId)
-                .timeWindow(Time.minutes(1), Time.seconds(20))
+                .timeWindow(Time.minutes(10), Time.minutes(2))
                 .aggregate(new PvAggregateFunction(), new PvWindowFunction())
                 //在根据窗口聚合
                 .keyBy(_.windowEnd)
@@ -60,13 +60,21 @@ case class PvItem(itemId:Int,eventType:String,timeStamp:Long)
 case class WindowPvResult(itemId:Int,windowEnd:Long,nums:Long)
 
 class PvAggregateFunction() extends AggregateFunction[PvItem,Long,Long]{
-    override def add(value: PvItem, accumulator: Long) = accumulator+1
+    override def add(value: PvItem, accumulator: Long) = {
+        accumulator+1
+    }
 
-    override def createAccumulator() = 0L
+    override def createAccumulator() = {
+        0L
+    }
 
-    override def getResult(accumulator: Long) = accumulator
+    override def getResult(accumulator: Long) = {
+        accumulator
+    }
 
-    override def merge(a: Long, b: Long) = a+b
+    override def merge(a: Long, b: Long) = {
+        a+b
+    }
 }
 
 class PvWindowFunction() extends WindowFunction[Long,WindowPvResult,Int,TimeWindow]{

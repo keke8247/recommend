@@ -1111,3 +1111,4 @@
 2020-06-01 22:08:07,960   INFO --- [                              http-nio-8088-exec-5]  com.wdk.business.rest.ProductRestApi                                            (line:    90)  :  PRODUCT_PV_PREFIX:155001|pv|1591020487
 2020-06-01 22:08:10,625   INFO --- [                             http-nio-8088-exec-10]  com.wdk.business.rest.ProductRestApi                                            (line:    90)  :  PRODUCT_PV_PREFIX:138554|pv|1591020490
 2020-06-01 22:08:12,385   INFO --- [                              http-nio-8088-exec-9]  com.wdk.business.rest.ProductRestApi                                            (line:    90)  :  PRODUCT_PV_PREFIX:122417|pv|1591020492
+2020-06-01 22:09:07,075   INFO --- [                              http-nio-8088-exec-1]  com.wdk.business.rest.ProductRestApi                                            (line:    90)  :  PRODUCT_PV_PREFIX:139060|pv|1591020547
