@@ -27,17 +27,8 @@ object LoginDetect {
         //设置时间语义
         env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime)
 
-        //构建KafkaSource
-        //从kafka消费数据
-        val properties = new Properties()
-        properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,"master:9092,slave1:9092,slave2:9092")
-        properties.put(ConsumerConfig.GROUP_ID_CONFIG,"flink-recommender")
-        properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,"org.apache.kafka.common.serialization.StringDeserializer")
-        properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,"org.apache.kafka.common.serialization.StringDeserializer")
-        properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG,"latest")
-
         //声明consumer
-        val sourceKafka = new FlinkKafkaConsumer[String]("recommender_login",new SimpleStringSchema(),properties)
+        val sourceKafka = FlinkKafkaSource.apply().getFlinkKafkaSources("recommender_login")
 
         val logStream = env.addSource(sourceKafka).map(log=>{
             val attr = log.split("\\|")
